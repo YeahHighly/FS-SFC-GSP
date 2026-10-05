@@ -47,7 +47,9 @@ Check the manifest for missing data or failed downloads before proceeding to con
 
 ## 2. Structural Connectivity Construction
 
-Run the remaining commands from the repository root. Structural processing requires a Linux environment, or WSL when launched from Windows, with MRtrix3, FreeSurfer and a valid FreeSurfer license, FSL, and ANTs. The launching Python environment also needs NumPy and Matplotlib. The default WSL distribution is `Ubuntu-22.04`; use `--distro` to select another installed distribution.
+Our structural connectivity workflow uses Windows with Windows Subsystem for Linux (WSL). The Python script is launched from Windows PowerShell and invokes MRtrix3, FreeSurfer, FSL, and ANTs installed inside WSL. It automatically translates Windows file paths into WSL paths to access the downloaded MRI data and save the processing results.
+
+Install and configure these neuroimaging tools inside WSL, including a valid FreeSurfer license. The Windows Python environment used to launch the script also needs NumPy and Matplotlib. The default WSL distribution is `Ubuntu-22.04`; use `--distro` to select another installed distribution. Run the remaining commands from the repository root.
 
 Prepare an AAL90 atlas in MNI152 2 mm space with consecutive ROI labels from 1 to 90, together with a matching TSV containing `index`, `original_value`, and `name`. These files are not included in the repository. Place them at the default locations:
 
@@ -56,9 +58,9 @@ Code/atlases/aal90/aal90_mni152_2mm.nii.gz
 Code/atlases/aal90/aal90_mapping.tsv
 ```
 
-Then build structural connectivity:
+Then build structural connectivity from Windows PowerShell:
 
-```bash
+```powershell
 python Code/build_structural_connectivity.py
 ```
 
@@ -66,7 +68,7 @@ Use `--aal-atlas` and `--aal-mapping` to specify alternative atlas paths. Subjec
 
 Results are saved to `SFC/<subject_id>/structural_connectivity/`, including SIFT2-weighted connectivity matrices, the atlas in individual MRI space, FreeSurfer intermediate outputs, and QC results. Retain these files for functional connectivity construction.
 
-Animated examples of tractography and MRI segmentation, reconstruction, and AAL90 parcellation are shown below. Click either preview to view the original MP4 video.
+Animated examples of tractography and MRI segmentation, reconstruction, and AAL90 parcellation are shown below.
 
 <table>
   <tr>
@@ -75,18 +77,10 @@ Animated examples of tractography and MRI segmentation, reconstruction, and AAL9
   </tr>
   <tr>
     <td width="50%" align="center">
-      <a href="Figure/TractographyFlow.mp4">
-        <img src="Figure/TractographyFlow.gif" alt="Animated visualization of reconstructed brain fibre tracts" width="100%">
-      </a>
-      <br>
-      <a href="Figure/TractographyFlow.mp4">View MP4</a>
+      <img src="Figure/TractographyFlow.gif" alt="Animated visualization of reconstructed brain fibre tracts" width="100%">
     </td>
     <td width="50%" align="center">
-      <a href="Figure/SlicerCapture.mp4">
-        <img src="Figure/SlicerCapture.gif" alt="Rotating MRI reconstruction with AAL90 parcellation" width="100%">
-      </a>
-      <br>
-      <a href="Figure/SlicerCapture.mp4">View MP4</a>
+      <img src="Figure/SlicerCapture.gif" alt="Rotating MRI reconstruction with AAL90 parcellation" width="100%">
     </td>
   </tr>
 </table>
