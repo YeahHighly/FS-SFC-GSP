@@ -1,7 +1,7 @@
 <h1 align="center">Graph Signal Processing of Frequency-Specific Structure-Function Coupling for ADHD Classification</h1>
 
 <p align="center">
-  <strong>Haili Ye · Kaidong Wu · Timothy J. Silk · Fei He</strong>
+  <strong>Haili Ye · Kaidong Wu · Karen Caeyenberghs · Timothy J. Silk · Fei He</strong>
 </p>
 
 <p align="center">
